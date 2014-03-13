@@ -41,28 +41,12 @@ public class OceanImpl implements Ocean {
 		//TODO ******** To set as FACTORY ******************************
 		//TODO ************ WARNING ********* IF THE LIST BECOME OBSOLETE **** CHECK placeAllShipsRandomly METHOD TO MODIFY ACCORDINGLY
 		//TODO ************ WARNING ********* IF THE LIST BECOME OBSOLETE **** CHECK isGameOver METHOD TO MODIFY ACCORDINGLY
-		ShipInter carrier = new AircraftCarrier();
-		fleet.add(carrier);
-		ShipInter battleship1 = new Battleship();
-		fleet.add(battleship1);
-		ShipInter battleship2 = new Battleship();
-		fleet.add(battleship2);
-		ShipInter submarine1 = new Submarine();
-		fleet.add(submarine1);
-		ShipInter submarine2 = new Submarine();
-		fleet.add(submarine2);
-		ShipInter destroyer1 = new Destroyer();
-		fleet.add(destroyer1);
-		ShipInter destroyer2 = new Destroyer();
-		fleet.add(destroyer2);
-		ShipInter patrol1 = new PatrolBoat();
-		fleet.add(patrol1);
-		ShipInter patrol2 = new PatrolBoat();
-		fleet.add(patrol2);
-		ShipInter patrol3 = new PatrolBoat();
-		fleet.add(patrol3);
-		ShipInter patrol4 = new PatrolBoat();
-		fleet.add(patrol4);
+		
+		fleet = ShipFactory.getInstance().getShips();
+		System.out.println("num ret items = " + fleet.size()); // just a test message to show correct num ship being returned
+		for(ShipInter ship : fleet) {
+			System.out.println("Type=" + ship.getShipType() + " hit = " + ship);
+		}
 	}
 	
 	private int randInt(int min, int max){
