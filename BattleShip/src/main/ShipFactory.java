@@ -18,7 +18,11 @@ public class ShipFactory {
 
 			ships = new ArrayList<ShipInter>();
 			//Create a new ship for each line item within the properties file
-			for(String key : props.stringPropertyNames()) {
+			for(int i = 1; i <= props.size(); i++) {
+				String key = "ship"+i+".class";
+				//debug
+				//System.out.println(props.getProperty(key));
+				//\debug
 				String value = props.getProperty(key);
 				ShipInter ship = (ShipInter) Class.forName(value).newInstance();
 				ships.add(ship);

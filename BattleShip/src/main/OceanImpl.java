@@ -71,7 +71,7 @@ public class OceanImpl implements Ocean {
 			while (!place){
 				row = randInt(0, maxGrid);
 				column = randInt(0, maxGrid);
-				horiz = (randInt(0,2)>0)? true:false;
+				horiz = (randInt(0,2)>0);
 				place = obj.okToPlaceShipAt(row, column, horiz, this); //TODO Can Ocean class refer to itself with the keyword this????
 			}
 			obj.placeShipAt(row, column, horiz, this);
@@ -83,6 +83,10 @@ public class OceanImpl implements Ocean {
 					setShipArray(obj, row+i, column);
 				}
 			}
+			//debug
+			toString();
+			System.out.println();
+			//\debug
 		}	
 	}
 	
@@ -149,6 +153,19 @@ public class OceanImpl implements Ocean {
 		// -: hit on water
 		// x: sunken ship
 		// .: location that has not been fired at
+		
+		
+		
+        int[] header = {0,1,2,3,4,5,6,7,8,9};
+        System.out.print("* 0 1 2 3 4 5 6 7 8 9");
+        for(int i = 0; i <10; i++){
+            System.out.println("");
+            System.out.print(header[i]);
+            for(int t = 0; t <10; t++){
+                System.out.print(" "+getShipArray()[i][t].toString());
+            }
+        }
+         
 		
 		return ocean;
 	}

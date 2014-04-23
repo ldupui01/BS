@@ -32,6 +32,7 @@ public class UseableShip extends Ship {
 	public String toString(){
 		String state = "";
 
+		
 		if(this.isSunk())
 			state = "x";
 		else

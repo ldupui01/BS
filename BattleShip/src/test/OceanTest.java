@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class OceanTest {
-	
+
 	private Ocean ocean = new OceanImpl();
 
 	@BeforeClass
@@ -24,7 +24,7 @@ public class OceanTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 	}
 
 	@After
@@ -33,17 +33,21 @@ public class OceanTest {
 
 	@Test
 	public void test() {
+		int i = 0;
+		ocean = new OceanImpl();
 		ocean.placeAllShipsRandomly();
+		i++;
+
 		fail("Not yet implemented");
 	}
-	
+
 	//@Test
 	public void testRandom(){
 		int check = 10;
 		boolean b = true;
 		for (int i = 0; i<1000; i++){
 			//if(ocean.randInt(0, 10)>=check){
-				b = false;
+			b = false;
 			//}
 		}
 		assertFalse("The max random is too large", b != true);

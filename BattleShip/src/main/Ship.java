@@ -67,13 +67,13 @@ public abstract class Ship implements ShipInter {
         }
         for(int i = Math.max(0, row-1); i<=Math.min(9,row +1); i++) {
                 for (int j = Math.max(0, column-1); j<=Math.min(column +1, 9); j++) {
-                    if (ocean.isOccupied(row, column)) {
+                    if (ocean.isOccupied(i, j)) {
                         return false;
                     }
                 }
         }
         int myInt = (hori) ? 1 : 0;
-        return okToPlaceShipRec(row-(1-myInt), column-myInt, hori, ocean, length-1);
+        return okToPlaceShipRec(row+(1-myInt), column+myInt, hori, ocean, length-1);
     }
 
     
@@ -82,9 +82,11 @@ public abstract class Ship implements ShipInter {
         if (row<0 || column<0) {
             throw new IllegalArgumentException("Ship extends outside grid");
         }
-        if (row + (length*(1-hori))>9 || column + (length*hori)>9 ) {
+        
+        if (row + (length*(1-hori))>10 || column + (length*hori)>10 ) {
             throw new IllegalArgumentException("Ship extends outside grid");
-        }
+       	}
+        
         setBowRow(row);
         setBowColumn(column);
         setHorizontal(horizontal);
