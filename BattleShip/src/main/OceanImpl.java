@@ -44,6 +44,7 @@ public class OceanImpl implements Ocean {
 		
 		fleet = ShipFactory.getInstance().getShips();
 		System.out.println("num ret items = " + fleet.size()); // just a test message to show correct num ship being returned
+
 		for(ShipInter ship : fleet) {
 			System.out.println("Type=" + ship.getShipType() + " hit = " + ship);
 		}
