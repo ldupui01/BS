@@ -123,7 +123,7 @@ public abstract class Ship implements ShipInter {
     
     public boolean isSunk() {
         for(int i = 0; i<hit.length; i++) {
-            if (hit[i] = false) {
+            if (hit[i] == false) { //put an extra =, there was only one before. 
                 return false;
             }
         }

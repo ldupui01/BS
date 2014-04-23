@@ -20,6 +20,8 @@ public class OceanImpl implements Ocean {
 	private List<ShipInter> fleet;
 	private int fleetInitSize;
 	private int maxGrid;
+	//added this
+	private boolean[][] beenShot;
 
 	public OceanImpl(){
 		//Create an empty ocean fills the ship  array with EmptySeas.
@@ -27,6 +29,9 @@ public class OceanImpl implements Ocean {
 		maxGrid = 10;
 		//this.initOcean();
 		shipArray = new ShipInter[maxGrid][maxGrid];//added by G
+		//added this
+		beenShot = new boolean[maxGrid][maxGrid];//added by G
+		//\added this
 		this.initShipArray();
 		fleet = new ArrayList<ShipInter>();
 		this.admiral();
@@ -104,7 +109,8 @@ public class OceanImpl implements Ocean {
 		shotFired++;
 		ShipInter s = shipArray[row][column];
 		ShipInter es = new EmptySea();
-		if(s.getClass().equals((es.getClass()))){
+		beenShot[row][column] = true;
+		if(s.getShipType().equals((es.getShipType()))){
 			s.shootAt(row, column);
 			return false;
 		}else{
@@ -162,7 +168,10 @@ public class OceanImpl implements Ocean {
             System.out.println("");
             System.out.print(header[i]);
             for(int t = 0; t <10; t++){
-                System.out.print(" "+getShipArray()[i][t].toString());
+            	if(beenShot[i][t])
+            		System.out.print(" "+getShipArray()[i][t].toString());
+            	else
+            		System.out.print(" .");
             }
         }
          
