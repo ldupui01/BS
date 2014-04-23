@@ -62,6 +62,9 @@ public abstract class Ship implements ShipInter {
         if (length == 0) {
             return true;
         }
+        if (row>9 || row<0 || column<0 || column>9) {
+            return false;
+        }
         for(int i = Math.max(0, row-1); i<=Math.min(9,row +1); i++) {
                 for (int j = Math.max(0, column-1); j<=Math.min(column +1, 9); j++) {
                     if (ocean.isOccupied(row, column)) {
@@ -102,7 +105,7 @@ public abstract class Ship implements ShipInter {
         if (row < getBowRow() || column<getBowColumn()) {
             throw new RuntimeException("Yo dude, we fucked up, this ship isn't in that cell");
         }
-        if (bowRow + (1-hori)*length > row || bowColumn + (hori * length) >column) {
+        if (bowRow + (1-hori)*length < row || bowColumn + (hori * length) <column) {
             throw new RuntimeException("Yo dude, we fucked up, this ship isn't in that cell");
         }
         for (int i = 0; i<length; i++) {

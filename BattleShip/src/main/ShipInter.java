@@ -77,7 +77,7 @@ public interface ShipInter {
     * @param int the column to place the ship in
     * @param boolean whether the ship is horizontal or not
     * @param Ocean the ocean to place the ship in
-    * @throws IllegalArgumentException if the position is invalid
+    * @throws IllegalArgumentException if the position is invalid (though not if occupied(us oktoplaceat method))
     * @return void
     */
     void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) throws IllegalArgumentException;
