@@ -170,9 +170,9 @@ public class BattleShipGame {
      */
     public int[] takeShots(){
         ui.printToUser("Please enter the row value");
-        int column = Integer.parseInt(String.valueOf(ui.readFromUser().charAt(0)));
-        ui.printToUser("Please enter the column value");
         int row = Integer.parseInt(String.valueOf(ui.readFromUser().charAt(0)));
+        ui.printToUser("Please enter the column value");
+        int column = Integer.parseInt(String.valueOf(ui.readFromUser().charAt(0)));
         return new int[]{row, column};
     }
 
