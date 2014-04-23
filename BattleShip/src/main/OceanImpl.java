@@ -89,7 +89,7 @@ public class OceanImpl implements Ocean {
 	public boolean isOccupied(int row, int column){
 		//returns True if the given location contains a ship, false if not
 		ShipInter es = new EmptySea();
-		return(shipArray[row][column].equals(es))?false:true;
+		return(shipArray[row][column].getShipType().equals(es.getShipType()))?false:true;
 		//return(oceanGrid[row][column]=="S" || oceanGrid[row][column]=="x")?true:false;
 	}
 	
@@ -163,8 +163,8 @@ public class OceanImpl implements Ocean {
 	
 	private void initShipArray(){
 		ShipInter es = new EmptySea();
-		for(int i = 0; i<maxGrid-1;i++){
-			for (int j=0;j<maxGrid-1;j++)
+		for(int i = 0; i<maxGrid;i++){
+			for (int j=0;j<maxGrid;j++)
 				setShipArray(es, i, j);
 		}
 	}

@@ -7,7 +7,11 @@ package main;
  *
  */
 public class UserCancelsException extends Exception {
-        public UserCancelsException() { super(); }
+        /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		public UserCancelsException() { super(); }
         public UserCancelsException(String message) { super(message); }
         public UserCancelsException(String message, Throwable cause) { super(message, cause); }
         public UserCancelsException(Throwable cause) { super(cause); }

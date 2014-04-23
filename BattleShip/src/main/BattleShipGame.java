@@ -118,16 +118,7 @@ public class BattleShipGame {
         ui.printToUser("Close the game at any time by inputting letters instead of numbers.");
         currentOcean = new OceanImpl();
         currentOcean.placeAllShipsRandomly();
-        // debug
-        for(ShipInter ship: currentOcean.getFleet()){
-            System.out.println(ship.getShipType() + " C:" + ship.getBowColumn() + " R:" + ship.getBowRow());
-        }
-        for(int i = 0; i <10; i++){
-            for(int t = 0; t <10; t++){
-                System.out.println(currentOcean.getShipArray()[i][t].getShipType() + " R:" + i + " C:" +t);
-            }
-        }
-        //\endDebug
+       
         currentScore = 0;
         playTheGame();
         if(currentScore<highestScore

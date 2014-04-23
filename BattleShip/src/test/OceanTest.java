@@ -33,10 +33,11 @@ public class OceanTest {
 
 	@Test
 	public void test() {
+		ocean.placeAllShipsRandomly();
 		fail("Not yet implemented");
 	}
 	
-	@Test
+	//@Test
 	public void testRandom(){
 		int check = 10;
 		boolean b = true;

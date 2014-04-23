@@ -3,7 +3,6 @@ package main;
 import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ShipFactory {
