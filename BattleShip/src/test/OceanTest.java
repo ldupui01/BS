@@ -52,5 +52,16 @@ public class OceanTest {
 		}
 		assertFalse("The max random is too large", b != true);
 	}
+	
+	@Test
+	public void testmemento(){
+		ocean = new OceanImpl();
+		for(int i=0; i<10;i++){
+			for (int j=0; j<10; j++){
+				if(ocean.isGameOver())System.out.println(ocean.toString());
+				ocean.shootAt(i, j);
+			}
+		}
+	}
 
 }

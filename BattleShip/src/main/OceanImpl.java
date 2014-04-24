@@ -22,6 +22,7 @@ public class OceanImpl implements Ocean {
 	private int maxGrid;
 	//added this
 	private boolean[][] beenShot;
+	private Memento memento;
 
 	public OceanImpl(){
 		//Create an empty ocean fills the ship  array with EmptySeas.
@@ -48,6 +49,7 @@ public class OceanImpl implements Ocean {
 		//TODO ************ WARNING ********* IF THE LIST BECOME OBSOLETE **** CHECK isGameOver METHOD TO MODIFY ACCORDINGLY
 		
 		fleet = ShipFactory.getInstance().getShips();
+		
 		System.out.println("num ret items = " + fleet.size()); // just a test message to show correct num ship being returned
 
 		for(ShipInter ship : fleet) {
@@ -69,7 +71,7 @@ public class OceanImpl implements Ocean {
 		
 		Iterator<ShipInter> it = fleet.iterator();
 		while (it.hasNext()){
-		ShipInter obj = it.next(); //TODO test the iterator is actually starting with the big boat
+		ShipInter obj = it.next();
 			boolean place = false;
 			boolean horiz = false;
 			int row = -1, column = -1; // initialised at -1 to make sure the random setting is working
@@ -77,10 +79,10 @@ public class OceanImpl implements Ocean {
 				row = randInt(0, maxGrid);
 				column = randInt(0, maxGrid);
 				horiz = (randInt(0,2)>0);
-				place = obj.okToPlaceShipAt(row, column, horiz, this); //TODO Can Ocean class refer to itself with the keyword this????
+				place = obj.okToPlaceShipAt(row, column, horiz, this);
 			}
 			obj.placeShipAt(row, column, horiz, this);
-			//TODO check if below setShipArray for the bow is done in Ship Class
+
 			for (int i = 0;i<obj.getLength();i++){
 				if(horiz){
 					setShipArray(obj, row, column+i);
@@ -89,10 +91,12 @@ public class OceanImpl implements Ocean {
 				}
 			}
 			//debug
-			toString();
-			System.out.println();
+			//toString();
+			//System.out.println();
 			//\debug
-		}	
+		}
+		// Saving the grid as String in memento before sinking any ships
+		saveToMemento();
 	}
 	
 	public boolean isOccupied(int row, int column){
@@ -152,35 +156,36 @@ public class OceanImpl implements Ocean {
 		return shipArray;
 	}
 	
+	/*
+	* 	@return the string representing the ocean
+	* 	row number on the left from 0 to 9
+	*	column number on the top from 0 to 9
+	*	S: hit on ship
+	*	-: hit on water
+	*	x: sunken ship
+	*	.: location that has not been fired at 
+	 */
+	
 	@Override
 	public String toString(){
-		//TODO finalise the toString
 		String strOcean = "";
-		//return the string representing the ocean
-		// row number on the left from 0 to 9
-		// column number on the top from 0 to 9
-		// S: hit on ship
-		// -: hit on water
-		// x: sunken ship
-		// .: location that has not been fired at
-
-        int[] header = {0,1,2,3,4,5,6,7,8,9};
-        strOcean = "* 0 1 2 3 4 5 6 7 8 9";
-        //System.out.print("* 0 1 2 3 4 5 6 7 8 9");
-        for(int i = 0; i <10; i++){
-        	strOcean += "";
-        	strOcean += header[i];
-        	//System.out.println("");
-            //System.out.print(header[i]);
-            for(int t = 0; t <10; t++){
-            	if(beenShot[i][t]){
-            		strOcean += " "+getShipArray()[i][t].toString();
-            		//System.out.print(" "+getShipArray()[i][t].toString());
-            	}else{
-            		strOcean += " .";
-            		//System.out.print(" .");
-            		}
-            }
+		System.out.println(isGameOver());
+        if(isGameOver()){
+        	strOcean = restoreFromMemento(memento);
+        }else{
+			int[] header = {0,1,2,3,4,5,6,7,8,9};
+	        strOcean = "* 0 1 2 3 4 5 6 7 8 9";
+	        for(int i = 0; i <10; i++){
+	        	strOcean += "";
+	        	strOcean += header[i];
+	            for(int t = 0; t <10; t++){
+	            	if(beenShot[i][t]){
+	            		strOcean += " "+getShipArray()[i][t].toString();
+	            	}else{
+	            		strOcean += " .";
+	            		}
+	            }
+	        }
         }
 		return strOcean;
 	}
@@ -226,5 +231,49 @@ public class OceanImpl implements Ocean {
 		return es;
 	}
 	
+	/*
+	 * from here:  MEMENTO of the toString()
+	 * restore the grid at the state of beginning before ships being sunk
+	 */
+	
+	public static class Memento{
+		private final String ocean;
+		
+		private Memento(String oceanOrigin){
+			ocean = oceanOrigin;
+		}
+		
+		private String getSavedGrid(){
+			return ocean;
+		}
+	}
+	
+	private void setBeenShotTrue(){
+		for(int i = 0; i<10;i++){
+			for(int j = 0; j<10;j++){
+			beenShot[i][j]= true;
+			}
+		}
+	}
+	
+	private void setBeenShotFalse(){
+		for(int i = 0; i<10;i++){
+			for(int j = 0; j<10;j++){
+			beenShot[i][j]= false;
+			}
+		}
+	}
+	
+	public Memento saveToMemento(){
+		setBeenShotTrue();
+		String oceanGrid = toString();
+		setBeenShotFalse();
+		
+		return new Memento(oceanGrid);
+	}
+	
+	public String restoreFromMemento(Memento memento){
+		return memento.getSavedGrid();
+	}
 	
 }
