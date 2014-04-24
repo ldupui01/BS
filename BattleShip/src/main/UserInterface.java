@@ -19,6 +19,7 @@ public class UserInterface {
         String input=ob.nextLine();			//added by Ludo
     	//String input = System.console().readLine();
         
+        
         input = input.replaceAll("\"","");
         return input;
     }
