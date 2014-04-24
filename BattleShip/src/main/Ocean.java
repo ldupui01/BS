@@ -66,4 +66,9 @@ public interface Ocean {
 	 * @return returns Ship that is located in these row/column coordinate 
 	 */
 	ShipInter identifyShip(int row, int column);
+	
+	/*
+	 * @return returns the max size of the grid; 
+	 */
+	int getMaxGrid();
 }

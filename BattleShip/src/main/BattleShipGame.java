@@ -12,16 +12,16 @@ import java.util.ArrayList;
    set up the game;
    accept shots from the user;
    display the results;
-   print nal scores; and
+   print final scores; and
    ask the user if s/he wants to play again.
 
  All input/output is done here. All computation will be carried out in the Ocean class
  and the various Ship classes.
  To aid the user, row numbers should be displayed along the left edge of the grid, and
  column numbers should be displayed along the top. Numbers should be 0 to 9, not 1
- to 10. The top left corner square should be 0,0. Use dierent characters to indicate
+ to 10. The top left corner square should be 0,0. Use different characters to indicate
  locations that contain a hit, locations that contain a miss, and locations that have never
- been red upon.
+ been fired upon.
  Use methods appropriately; don't cram everything into one or two methods, but try
  to divide up the work into sensible parts with reasonable names. Test every non-private
  method in the Ship class. Also, test the methods in each subclass of Ship
@@ -160,9 +160,7 @@ public class BattleShipGame {
                 ui.printToUser("You sunk a " + shotShip.getShipType() + "!");
             }
         }
-
     }
-
 
     /**
      * accept shots from the user;
@@ -182,9 +180,14 @@ public class BattleShipGame {
      *
      */
     public void displayGrid(){
-
-        //TODO needs implementing in ocean.
-        System.out.println(currentOcean.toString());
+    	int max = currentOcean.getMaxGrid();
+    	//TODO needs implementing in ocean.
+    	int line = max*2 +1;
+    	for(int i=0; i<max+1;i++){
+    	   int lineStart = 0 + line*i;
+    	   int lineEnd = line + line*i;
+    	   System.out.println(currentOcean.toString().substring(lineStart, lineEnd));
+       }
     }
 
     /**

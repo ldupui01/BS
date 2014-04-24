@@ -128,6 +128,10 @@ public class OceanImpl implements Ocean {
 		return shotFired;
 	}
 	
+	public int getMaxGrid(){
+		return maxGrid;
+	}
+	
 	public int getHitCount(){
 		//returns the number of hit recorded (even several shot at the same place)
 		return hitCount;
@@ -151,7 +155,7 @@ public class OceanImpl implements Ocean {
 	@Override
 	public String toString(){
 		//TODO finalise the toString
-		String ocean = "";
+		String strOcean = "";
 		//return the string representing the ocean
 		// row number on the left from 0 to 9
 		// column number on the top from 0 to 9
@@ -159,24 +163,26 @@ public class OceanImpl implements Ocean {
 		// -: hit on water
 		// x: sunken ship
 		// .: location that has not been fired at
-		
-		
-		
+
         int[] header = {0,1,2,3,4,5,6,7,8,9};
-        System.out.print("* 0 1 2 3 4 5 6 7 8 9");
+        strOcean = "* 0 1 2 3 4 5 6 7 8 9";
+        //System.out.print("* 0 1 2 3 4 5 6 7 8 9");
         for(int i = 0; i <10; i++){
-            System.out.println("");
-            System.out.print(header[i]);
+        	strOcean += "";
+        	strOcean += header[i];
+        	//System.out.println("");
+            //System.out.print(header[i]);
             for(int t = 0; t <10; t++){
-            	if(beenShot[i][t])
-            		System.out.print(" "+getShipArray()[i][t].toString());
-            	else
-            		System.out.print(" .");
+            	if(beenShot[i][t]){
+            		strOcean += " "+getShipArray()[i][t].toString();
+            		//System.out.print(" "+getShipArray()[i][t].toString());
+            	}else{
+            		strOcean += " .";
+            		//System.out.print(" .");
+            		}
             }
         }
-         
-		
-		return ocean;
+		return strOcean;
 	}
 	
 	/*private void initOcean(){
@@ -219,4 +225,6 @@ public class OceanImpl implements Ocean {
 		ShipInter es= new EmptySea(); //TODO replace new Emptysea by the actual Emptysea from that location
 		return es;
 	}
+	
+	
 }

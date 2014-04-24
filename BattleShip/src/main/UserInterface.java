@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 /**
  * Class to handle requests of information from the user.(brought over from a different project (Quiz) by GuilhermeRibeiro)
  */
@@ -12,7 +14,11 @@ public class UserInterface {
      */
     public String readFromUser() {
         //TODO improve the regex, to accept most inputs.
-        String input = System.console().readLine();
+        
+        Scanner ob=new Scanner(System.in);	//added by Ludo
+        String input=ob.nextLine();			//added by Ludo
+    	//String input = System.console().readLine();
+        
         input = input.replaceAll("\"","");
         return input;
     }
@@ -25,6 +31,7 @@ public class UserInterface {
      */
     public char getUserAnswer(String aBunchOfChoices) {
         System.out.println(aBunchOfChoices);
+
         return readFromUser().toUpperCase().charAt(0);
     }
     /**
