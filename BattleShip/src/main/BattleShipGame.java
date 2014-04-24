@@ -41,9 +41,11 @@ public class BattleShipGame {
     public static void main(String[] args) {
         BattleShipGame bsg = new BattleShipGame();
         bsg.run();
+  
     }
 
-    /**
+
+	/**
      * Sets up the game
      */
     public BattleShipGame(){

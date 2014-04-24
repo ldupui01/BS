@@ -176,7 +176,7 @@ public class OceanImpl implements Ocean {
 	public String toString(){
 		String strOcean = "";
         if(isGameOver()){
-        	strOcean = restoreFromMemento(memento);
+        	strOcean = restoreFromMemento();
         }else{
 			int[] header = {0,1,2,3,4,5,6,7,8,9};
 	        strOcean = "* 0 1 2 3 4 5 6 7 8 9";
@@ -246,6 +246,7 @@ public class OceanImpl implements Ocean {
 		
 		private Memento(String oceanOrigin){
 			ocean = oceanOrigin;
+			System.out.println(ocean);
 		}
 		
 		private String getSavedGrid(){
@@ -273,11 +274,11 @@ public class OceanImpl implements Ocean {
 		setBeenShotTrue();
 		String oceanGrid = toString();
 		setBeenShotFalse();
-		
-		return new Memento(oceanGrid);
+		memento = new Memento(oceanGrid);
+		return memento;
 	}
 	
-	public String restoreFromMemento(Memento memento){
+	public String restoreFromMemento(){
 		return memento.getSavedGrid();
 	}
 	
