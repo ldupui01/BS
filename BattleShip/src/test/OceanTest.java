@@ -32,16 +32,12 @@ public class OceanTest {
 	}
 
 	@Test
-	public void test() {
-		int i = 0;
-		ocean = new OceanImpl();
-		ocean.placeAllShipsRandomly();
-		i++;
-
-		fail("Not yet implemented");
+	public void testfleet() {
+		int num = 11;
+		assertTrue("not the right number", ocean.getFleetSize() == num);
 	}
 
-	//@Test
+	@Test
 	public void testRandom(){
 		int check = 10;
 		boolean b = true;
@@ -54,14 +50,17 @@ public class OceanTest {
 	}
 	
 	@Test
-	public void testmemento(){
-		ocean = new OceanImpl();
+	public void testGameOver(){
+		boolean b = false;
 		for(int i=0; i<10;i++){
 			for (int j=0; j<10; j++){
-				if(ocean.isGameOver())System.out.println(ocean.toString());
 				ocean.shootAt(i, j);
+				if(ocean.isGameOver()){
+					b = true;
+				}
 			}
 		}
+		assertTrue("the game did not end", b == true);
 	}
 
 }

@@ -144,6 +144,7 @@ public class BattleShipGame {
             processShots(shots);
             displayResults();
         }
+        displayGrid();
         printFinalScores();
     }
 
@@ -180,13 +181,12 @@ public class BattleShipGame {
      *
      */
     public void displayGrid(){
-    	int max = currentOcean.getMaxGrid();
-    	//TODO needs implementing in ocean.
-    	int line = max*2 +1;
-    	for(int i=0; i<max+1;i++){
-    	   int lineStart = 0 + line*i;
-    	   int lineEnd = line + line*i;
-    	   System.out.println(currentOcean.toString().substring(lineStart, lineEnd));
+    	int max = currentOcean.getMaxGrid(); // modified by Ludo
+    	int line = max*2 +1; 				// modified by Ludo
+    	for(int i=0; i<max+1;i++){			// modified by Ludo
+    	   int lineStart = 0 + line*i;		// modified by Ludo
+    	   int lineEnd = line + line*i;		// modified by Ludo
+    	   System.out.println(currentOcean.toString().substring(lineStart, lineEnd)); // modified by Ludo
        }
     }
 

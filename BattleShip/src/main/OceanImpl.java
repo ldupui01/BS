@@ -44,17 +44,18 @@ public class OceanImpl implements Ocean {
 	
 	private void admiral(){
 		//Setting the fleet
-		//TODO ******** To set as FACTORY ******************************
-		//TODO ************ WARNING ********* IF THE LIST BECOME OBSOLETE **** CHECK placeAllShipsRandomly METHOD TO MODIFY ACCORDINGLY
-		//TODO ************ WARNING ********* IF THE LIST BECOME OBSOLETE **** CHECK isGameOver METHOD TO MODIFY ACCORDINGLY
 		
 		fleet = ShipFactory.getInstance().getShips();
-		
+		/*
 		System.out.println("num ret items = " + fleet.size()); // just a test message to show correct num ship being returned
 
 		for(ShipInter ship : fleet) {
 			System.out.println("Type=" + ship.getShipType() + " hit = " + ship);
-		}
+		}*/
+	}
+	
+	public int getFleetSize(){
+		return fleet.size();
 	}
 	
 	private int randInt(int min, int max){
@@ -122,6 +123,7 @@ public class OceanImpl implements Ocean {
 			s.shootAt(row, column);
 			if(s.isSunk()){
 				fleet.remove(s);
+				System.out.println(fleetSize());
 			}
 			return true;
 		}
@@ -147,8 +149,12 @@ public class OceanImpl implements Ocean {
 		return shipSunk;
 	}
 	
+	public int fleetSize(){
+		return fleet.size();
+	}
+	
 	public boolean isGameOver(){
-		return (fleet.isEmpty())? true:false;
+		return (fleet.isEmpty()); //? true:false;
 	}
 	
 	public ShipInter[][] getShipArray(){
@@ -169,7 +175,6 @@ public class OceanImpl implements Ocean {
 	@Override
 	public String toString(){
 		String strOcean = "";
-		System.out.println(isGameOver());
         if(isGameOver()){
         	strOcean = restoreFromMemento(memento);
         }else{
@@ -232,7 +237,7 @@ public class OceanImpl implements Ocean {
 	}
 	
 	/*
-	 * from here:  MEMENTO of the toString()
+	 * from here: MEMENTO of the toString()
 	 * restore the grid at the state of beginning before ships being sunk
 	 */
 	

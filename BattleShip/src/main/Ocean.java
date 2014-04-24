@@ -71,4 +71,9 @@ public interface Ocean {
 	 * @return returns the max size of the grid; 
 	 */
 	int getMaxGrid();
+	
+	/*
+	 * @return returns fleet size; 
+	 */
+	int getFleetSize();
 }
